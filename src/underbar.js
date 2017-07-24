@@ -100,6 +100,13 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var set = {};
+
+    _.each(array, function(item) {
+      set[JSON.stringify(item)] = item;
+    });
+
+    return Object.values(set);
   };
 
 
