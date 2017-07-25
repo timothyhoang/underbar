@@ -372,11 +372,22 @@
     }
   };
 
+  // Exchange the value at index i with value at index j in list;
+  _.exchange = function(collection, i, j) {
+  }
+
+  // Sort the object's values by a criterion produced by an iterator.
+  // If iterator is a string, sort objects by that property with the name
+  // of that string.
+  // Uses the quicksort algorithm.
+  _.quicksort = function(collection, iterator, lo, hi) {
+  }
+
   // Sort the object's values by a criterion produced by an iterator.
   // If iterator is a string, sort objects by that property with the name
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
-  _.sortBy = function(collection, iterator) {
+  _.sortBy = function(collection, iterator) { 
   };
 
   // Zip together two or more arrays with elements of the same index
