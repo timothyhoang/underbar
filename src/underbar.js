@@ -374,13 +374,6 @@
 
   // Sort the object's values by a criterion produced by an iterator.
   // If iterator is a string, sort objects by that property with the name
-  // of that string.
-  // Uses mergesort algorithm.
-  _.mergesort = function(collection, iterator, lo, hi) {
-  };
-
-  // Sort the object's values by a criterion produced by an iterator.
-  // If iterator is a string, sort objects by that property with the name
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
