@@ -374,6 +374,9 @@
 
   // Exchange the value at index i with value at index j in list;
   _.exchange = function(collection, i, j) {
+    var tmp = collection[i];
+    collection[i] = collection[j];
+    collection[j] = tmp;
   }
 
   // Sort the object's values by a criterion produced by an iterator.
