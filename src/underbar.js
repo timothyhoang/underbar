@@ -440,5 +440,17 @@
   //
   // Note: This is difficult! It may take a while to implement.
   _.throttle = function(func, wait) {
+    var timeLastCalled;
+
+    return function() {
+      var timeCalled = Date.now();
+      if (timeLastCalled === undefined || timeCalled - timeLastCalled + 1 > wait) {
+        func.apply(this);
+        timeLastCalled = timeCalled;
+      } else {
+        _.delay(func, wait - (timeCalled - timeLastCalled));
+        timeLastCalled += wait + 1;
+      }
+    };
   };
 }());
