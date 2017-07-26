@@ -377,31 +377,24 @@
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
-    var comparator;
-    if (typeof iterator === 'string') {
-      comparator = 'collection[i][iterator]';
-    } else {
-      comparator = 'iterator(collection[i])';
-    }
-
-    var indexMap = {};
-    var comparators = [];
-    for (var i = 0; i < collection.length; i++) {
-      if (!(eval(comparator) in indexMap)) {
-        indexMap[eval(comparator)] = [i];
+    return collection.sort(function(a, b) {
+      var comparator1;
+      var comparator2;
+      if (typeof iterator === 'string') {
+        comparator1 = a[iterator];
+        comparator2 = b[iterator];
       } else {
-        indexMap[eval(comparator)].push(i);
+        comparator1 = iterator(a);
+        comparator2 = iterator(b);
       }
-      comparators.push(eval(comparator));
-    }
 
-    comparators = _.uniq(comparators.sort());
-    var sortedIndices = _.reduce(comparators, function(sortedIndices, comparator) {
-      return sortedIndices.concat(indexMap[comparator]);
-    }, []);
-
-    return _.map(sortedIndices, function(index) {
-      return collection[index];
+      if (comparator1 < comparator2) {
+        return -1;
+      } else if (comparator1 > comparator2) {
+        return 1;
+      } else {
+        return 0;
+      }
     });
   };
 
