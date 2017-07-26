@@ -389,12 +389,8 @@
 
     for (var argIndex = 0; argIndex < arguments.length; argIndex++) {
       var argArray = arguments[argIndex];
-
       for (var arrIndex = 0; arrIndex < Math.max(argArray.length, result.length); arrIndex++) {
-        if (result[arrIndex] === undefined) {
-          result[arrIndex] = [].concat(new Array(argIndex));
-        }
-
+        result[arrIndex] = result[arrIndex] || [].concat(new Array(argIndex));
         result[arrIndex].push(argArray[arrIndex]);
       }
     }
