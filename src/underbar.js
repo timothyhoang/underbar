@@ -336,14 +336,12 @@
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
     var result = [];
-    var indices = {};
+    var indices = Object.keys(_.map(array, _.identity));
 
-    while (Object.keys(indices).length < array.length) {
-      var index = Math.floor(Math.random() * array.length);
-      if (!(index in indices)) {
-        indices[index] = null;
-        result.push(array[index]);
-      }
+    while (indices.length > 0) {
+      var index = indices[Math.floor(Math.random() * indices.length)];
+      indices.splice(_.indexOf(indices, index), 1);
+      result.push(array[parseInt(index)]);
     }
 
     return result;
