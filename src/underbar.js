@@ -411,6 +411,12 @@
   // Takes an arbitrary number of arrays and produces an array that contains
   // every item shared between all the passed-in arrays.
   _.intersection = function() {
+    var args = arguments;
+    return _.filter((args[0] || []), function(item) {
+      return _.every(args, function(array) {
+        return array.includes(item);
+      });
+    });
   };
 
   // Take the difference between one array and a number of other arrays.
