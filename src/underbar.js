@@ -412,11 +412,7 @@
     }
 
     return _.reduce(nestedArray, function(result, item) {
-      if (Array.isArray(item)) {
-        return _.flatten(item, result);
-      } else {
-        return result.concat(item);
-      }
+      return Array.isArray(item) ? _.flatten(item, result) : result.concat(item);
     }, result);
   };
 
