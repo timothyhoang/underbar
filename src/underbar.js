@@ -458,14 +458,20 @@
   // Note: This is difficult! It may take a while to implement.
   _.throttle = function(func, wait) {
     var timeLastCalled;
+    var funcIsQueued = false;
+
     return function() {
       var timeCalled = Date.now();
       if (timeLastCalled === undefined || timeCalled - timeLastCalled + 1 > wait) {
         func.apply(this);
         timeLastCalled = timeCalled + 1;
-      } else {
-        _.delay(func, wait - (timeCalled - timeLastCalled));
-        timeLastCalled += wait;
+      } else if (!funcIsQueued) {
+        funcIsQueued = true;
+        _.delay(function() {
+          timeLastCalled = Date.now();
+          funcIsQueued = false;
+          func();
+        }, wait - (timeCalled - timeLastCalled));
       }
     };
   };
