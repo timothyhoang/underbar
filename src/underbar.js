@@ -372,6 +372,18 @@
     }
   };
 
+  // Combine two sorted lists into a single sorted list.
+  _.merge = function() {
+  };
+
+  // Sort the list's values from index lo to index hi by a criterion
+  // produced by an iterator.
+  // If iterator is a string, sort objects by that property with the name
+  // of that string.
+  // Uses mergesort algorithm.
+  _.mergesort = function(collection, iterator, lo, hi) {
+  };
+
   // Sort the object's values by a criterion produced by an iterator.
   // If iterator is a string, sort objects by that property with the name
   // of that string. For example, _.sortBy(people, 'name') should sort
