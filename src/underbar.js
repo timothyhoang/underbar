@@ -463,14 +463,14 @@
     return function() {
       var timeCalled = Date.now();
       if (timeLastCalled === undefined || timeCalled - timeLastCalled + 1 > wait) {
-        func.apply(this);
         timeLastCalled = timeCalled + 1;
+        func.apply(this);
       } else if (!funcIsQueued) {
         funcIsQueued = true;
         _.delay(function() {
           timeLastCalled = Date.now();
           funcIsQueued = false;
-          func();
+          func.apply(this);
         }, wait - (timeCalled - timeLastCalled));
       }
     };
